@@ -1,0 +1,147 @@
+{% extends 'layout.html' %}
+
+{% set town_hall = player_data.town_hall %}
+
+{% block title %}Player Information{% endblock %}
+
+{% block content %}
+    <h2>Thông tin người chơi</h2>
+
+    <section id="general" class="player-data">
+        <div class="player-data-header">
+            <section class="player-data-hall-clan">
+                <h2>
+                    {{ player_data.name }}
+                    <br>
+                    <span class="player-tag">{{ player_data.tag }} </span>
+                </h2>
+    
+                        <div class="hall">
+                            <img src="{{ url_for('static', filename='asset/image/home_village/th' ~ player_data.town_hall ~ '.png' ) }}" alt="">
+                            <span class="label label-normal  without-icon with-text"><span><span class="value">TH {{ player_data.town_hall }}</span></span></span>              
+                        </div>
+    
+            </section>
+        </div>
+    
+    
+            <div class="player-data-clan">
+            <div class="player-clan">
+                <h2>
+                    <a href="/en/clan/2QP8JJQUQ/view/home-village">
+                        {{ player_data.clan.name }}<br>
+                        <span class="clan-tag">{{ player_data.clan.tag }}</span>
+                    </a>
+                </h2>
+                <a href="/en/clan/2QP8JJQUQ/view/home-village">
+                    <img src={{player_data.clan.badge.url}} alt="clan badge">            
+                </a>
+    
+                <span class="label role-1">{{ player_data.role }}</span>
+            </div>
+        </div>
+        
+    
+        <div class="player-data-infos">
+            <dl>
+                <dt>Cấp độ</dt>
+                <dd>
+                    <span class="label label-normal  with-icon with-text"><span class="icon icon-small icon-image"><picture><img src="{{ url_for('static', filename='asset/image/exp-player.png' ) }}" alt=""></picture>
+                    </span><span><span class="value">137</span></span></span>
+                </dd>
+     
+                <dt>Cấp kinh đô hội</dt>
+                <dd class="capital-level">
+                    <span class="label label-normal  label-length label-length-max with-icon with-text"><span class="icon icon-small icon-image"><picture>    <source srcset="/cache/xlarge/media/game/icons/exp-capital.webp" type="image/webp">    <source srcset="/cache/xlarge/media/game/icons/exp-capital.png" type="image/png">    <img src="/cache/xlarge/media/game/icons/exp-capital.png" alt=""></picture></span><span><span class="value">42</span></span></span>
+                                    <span class="progress-bar" title="94.26% - 18,853 / 20,000">
+                        <span class="progress-bar-cursor" style="width: 94.265%;"></span>
+                    </span>
+    
+                    <span class="label progression">
+                        18,853                    /
+                        20,000                </span>
+                                </dd>
+     
+                <dt>Đóng góp kinh đô hội</dt>
+                <dd>
+                    <span class="label label-normal  with-icon with-text"><span class="icon icon-small icon-image"><picture><img src="{{ url_for('static', filename='asset/image/capital-contribution.png' ) }}" alt=""></picture></span><span><span class="value">{{ player_data.clan_capital_contributions }}</span></span></span>            </dd>
+    
+                <dt>Vàng kinh đô</dt>
+                <dd>
+                    <span class="label label-normal  with-icon with-text"><span class="icon icon-small icon-image"><picture><img src="{{ url_for('static', filename='asset/image/capital-gold.png' ) }}" alt=""></picture></span><span><span class="value">{{ player_data.clan_capital_contributions }}</span></span></span>            </dd>
+    
+                            <dt>Tấn công thành công</dt>
+                <dd>
+                    <span class="label label-normal  label-length label-length-small without-icon with-text"><span><span class="value">{{ player_data.attack_wins }}</span></span></span>            </dd>
+                <dt>Phòng thủ thành công</dt>
+                <dd>
+                    <span class="label label-normal  label-length label-length-small without-icon with-text"><span><span class="value">{{ player_data.defense_wins }}</span></span></span>            </dd>
+    
+                
+                <dt>Chiến tích</dt>
+                <dd>
+                    <span class="label label-normal  label-length label-length-small without-icon with-text"><span><span class="value">{{ player_data.war_stars }}</span></span></span>            </dd>
+    
+                            <dt>Đóng góp</dt>
+                <dd>
+                    <span class="label label-normal  label-length label-length-normal with-icon with-text" title="Troops donated"><span class="icon icon-small icon-image"><picture><img src="{{ url_for('static', filename='asset/image/up.png' ) }}" alt=""></picture></span><span><span class="value">{{ player_data.donations }}</span></span></span>
+                    <span class="label label-normal  label-length label-length-normal with-icon with-text" title="Troops received"><span class="icon icon-small icon-image"><picture><img src="{{ url_for('static', filename='asset/image/down.png' ) }}" alt=""></picture></span><span><span class="value">{{ player_data.received }}</span></span></span>            </dd>
+                
+                <dt></dt>
+                <dd>
+                    <div class="player-labels">
+                        <span class="icon icon-large icon-image" title="I'm in for Clan Wars."><picture>    <source srcset="/cache/xlarge/media/game/misc/war-opt-in.webp" type="image/webp">    <source srcset="/cache/xlarge/media/game/misc/war-opt-in.png" type="image/png">    <img src="/cache/xlarge/media/game/misc/war-opt-in.png" alt=""></picture></span>
+                                                                <span class="icon icon-large icon-image" title="Clan Wars"><img src="https://api-assets.clashofclans.com/labels/64/ZxJp9606Vl1sa0GHg5JmGp8TdHS4l0jE4WFuil1ENvA.png" alt=""></span>                                        <span class="icon icon-large icon-image" title="Clan War League"><img src="https://api-assets.clashofclans.com/labels/64/JOzAO4r91eVaJELAPB-iuAx6f_zBbRPCLM_ag5mpK4s.png" alt=""></span>                                        <span class="icon icon-large icon-image" title="Clan Capital"><img src="https://api-assets.clashofclans.com/labels/64/S3DAe4JuqZQXxwqRTXgh76LC7OT51vF9H7CFa1bK23k.png" alt=""></span>                                                        </div>
+                </dd>
+            </dl>
+        </div>
+    
+        <div class="player-league">
+            <div class="current">
+        <span class="player-league-container">
+                    <span class="icon icon-xlarge icon-image" title="{{player_data.league.name}}"><picture><img src="{{player_data.league.icon.small}}" alt=""></picture></span>        <span>
+                <span class="league-name">{{ player_data.league.name }}</span>
+                <span class="league-trophies">
+                    <span class="ra ra-trophy"></span>
+                    {{ player_data.trophies }}            </span>
+            </span>
+        </span>
+    </div>
+    
+    
+    <div class="best">
+        <p>All time best</p>
+        <span class="player-league-container">
+                    <span class="icon icon-large icon-image" title="Champion League I"><picture>    <source srcset="/cache/xlarge/media/game/league/18.webp" type="image/webp">    <source srcset="/cache/xlarge/media/game/league/18.png" type="image/png">    <img src="/cache/xlarge/media/game/league/18.png" alt=""></picture></span>
+            <span>
+                <span class="league-trophies">
+                    <span class="ra ra-trophy"></span>
+                    {{player_data.best_trophies}}</span>
+            </span>
+        </span>
+    </div>    </div>
+    </section>
+
+    <!-- <p><strong>Name:</strong> {{ player_data.name }}</p>
+    <p><strong>Tag:</strong> {{player_data.tag}} </p>
+    <p><strong>League:</strong> <img src="{{player_data.league.icon.tiny}}" alt="chiến tích"> </p>
+    <h2>Làng chính</h2>
+    <h3>Troops</h3>
+    <ul>
+        {% for troop in player_data.home_troops %}
+            {% if troop.is_super_troop == False %}
+                <li>{{ troop.name }} {{ troop.level }} {{ troop.get_max_level_for_townhall(town_hall) }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <h3>Hero</h3>
+    <ul>
+        {% for hero in player_data.heroes %}
+            {% if hero._is_home_village == True %}
+                <li>{{ hero.name }} {{ hero.level }} {{ hero.get_max_level_for_townhall(town_hall) }}</li>
+            {% endif %}
+            
+        {% endfor %}
+    </ul> -->
+    <a href="/">Search another player</a>
+{% endblock %}

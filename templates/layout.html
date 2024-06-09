@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+{% include 'partials/_head.html' %}
+<body>
+    {% include 'partials/_header.html' %}
+    
+    <div class="content">
+        <form action="/search_player" method="post">
+            <section class="fields-default">
+                <input type="hidden" name="p" value="1">
+
+                <div>
+                    <p class="name">
+                        <input type="text" name="tag" id="tag" value="" placeholder="Nhập tag">
+                    </p>
+                </div>            
+                    <button type="submit">
+                        <span class="fas fa-search"></span>
+                        Search                    
+                    </button>
+            </section>
+        </form>
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+    
+    {% include 'partials/_footer.html' %}
+</body>
+</html>
